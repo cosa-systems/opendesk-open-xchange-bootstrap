@@ -1,3 +1,10 @@
+## [1.0.2](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.0.1...v1.0.2) (2023-07-12)
+
+
+### Bug Fixes
+
+* yamllint ([116b6a9](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/commit/116b6a96a66797c74eb72adb1f303e88da022468))
+
 ## [1.0.1](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.0.0...v1.0.1) (2023-07-12)
 
 

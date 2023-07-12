@@ -3,7 +3,7 @@ apiVersion: "v2"
 description: "This helm chart contains a bootstrap job for the setup of Open-Xchange"
 name: "sovereign-workplace-open-xchange-bootstrap"
 type: "application"
-version: "1.0.1"
+version: "1.0.2"
 keywords:
   - "open-xchange"
   - "bootstrap"
