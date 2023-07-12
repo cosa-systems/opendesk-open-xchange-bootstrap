@@ -22,6 +22,7 @@ helm install my-release sovereign-workplace-open-xchange-bootstrap/sovereign-wor
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | cleanup.deletePodsOnSuccess | bool | `false` | Keep Pods/Job logs after successful run. |
+| coreMiddlewarePodName | string | `"open-xchange-core-mw-default-0"` |  |
 | fullnameOverride | string | `""` |  |
 | global.imagePullSecrets | list | `[]` |  |
 | global.imageRegistry | string | `"docker.io"` |  |

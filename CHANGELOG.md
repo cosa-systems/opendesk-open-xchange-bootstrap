@@ -1,3 +1,10 @@
+# [1.1.0](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.0.2...v1.1.0) (2023-07-12)
+
+
+### Features
+
+* make podname of core-mw configurable ([e587fd5](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/commit/e587fd5ea903e5e5a4a77ffea910144af85c5306))
+
 ## [1.0.2](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.0.1...v1.0.2) (2023-07-12)
 
 
