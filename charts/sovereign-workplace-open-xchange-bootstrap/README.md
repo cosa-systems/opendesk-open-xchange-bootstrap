@@ -15,20 +15,21 @@ helm install my-release sovereign-workplace-open-xchange-bootstrap/sovereign-wor
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | common | 2.4.0 |
+| https://charts.bitnami.com/bitnami | common | 2.6.0 |
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| cleanup.deletePodsOnSuccess | bool | `false` | Delete Pods/Job logs after successful run. |
-| global.imagePullSecrets | list | `[]` | Credentials to fetch images from private registry Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/  imagePullSecrets:   - "docker-registry"  |
-| global.registry | string | `"registry.souvap-univention.de"` | Container registry address. |
-| image.imagePullPolicy | string | `"IfNotPresent"` | Define an ImagePullPolicy.  Ref.: https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy  "IfNotPresent" => The image is pulled only if it is not already present locally. "Always" => Every time the kubelet launches a container, the kubelet queries the container image registry to             resolve the name to an image digest. If the kubelet has a container image with that exact digest cached             locally, the kubelet uses its cached image; otherwise, the kubelet pulls the image with the resolved             digest, and uses that image to launch the container. "Never" => The kubelet does not try fetching the image. If the image is somehow already present locally, the            kubelet attempts to start the container; otherwise, startup fails  |
-| image.registry | string | `""` | Container registry address. This setting has higher precedence than global.registry. |
-| image.repository | string | `"souvap/tooling/images/ansible"` | Container repository string. |
-| image.tag | string | `"4.10.0"` | Define image tag. |
-| imagePullSecrets | list | `[]` | Credentials to fetch images from private registry Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/  imagePullSecrets:   - "docker-registry"  |
+| cleanup.deletePodsOnSuccess | bool | `false` | Keep Pods/Job logs after successful run. |
+| fullnameOverride | string | `""` |  |
+| global.imagePullSecrets | list | `[]` |  |
+| global.imageRegistry | string | `"docker.io"` |  |
+| image.imagePullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"alpine/k8s"` |  |
+| image.tag | string | `"1.25.6"` |  |
+| imagePullSecrets | list | `[]` |  |
+| nameOverride | string | `""` |  |
 | resources.limits.cpu | int | `1` | The max amount of CPUs to consume. |
 | resources.limits.memory | string | `"1Gi"` | The max amount of RAM to consume. |
 | resources.requests.cpu | string | `"500m"` | The amount of CPUs which has to be available on the scheduled node. |
