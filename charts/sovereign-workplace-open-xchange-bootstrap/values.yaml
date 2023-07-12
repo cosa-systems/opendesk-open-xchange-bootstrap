@@ -74,4 +74,9 @@ resources:
 cleanup:
   # -- Keep Pods/Job logs after successful run.
   deletePodsOnSuccess: false
+
+# Service Account settings.
+serviceAccount:
+  
+  annotations: {}
 ...
