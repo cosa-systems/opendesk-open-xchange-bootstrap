@@ -34,6 +34,7 @@ helm install my-release sovereign-workplace-open-xchange-bootstrap/sovereign-wor
 | resources.limits.memory | string | `"1Gi"` | The max amount of RAM to consume. |
 | resources.requests.cpu | string | `"500m"` | The amount of CPUs which has to be available on the scheduled node. |
 | resources.requests.memory | string | `"256Mi"` | The amount of RAM which has to be available on the scheduled node. |
+| serviceAccount.annotations | object | `{}` |  |
 
 ## Uninstalling the Chart
 
