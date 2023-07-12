@@ -1,0 +1,15 @@
+---
+apiVersion: "rbac.authorization.k8s.io/v1"
+kind: "Role"
+metadata:
+  namespace: {{ .Release.Namespace | quote }}
+  name: {{ include "common.names.fullname" . | quote }}
+rules:
+- apiGroups: [""]
+  resources:
+    - "pods"
+    - "pods/exec"
+  # Todo: Restrict role to ox8-core-mw-default-0
+  # resourceNames: ["ox8-core-mw-default-0"]
+  verbs: ["get", "create"]
+...

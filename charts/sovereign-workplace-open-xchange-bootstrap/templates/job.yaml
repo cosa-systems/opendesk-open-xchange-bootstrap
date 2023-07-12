@@ -1,0 +1,95 @@
+---
+apiVersion: {{ include "common.capabilities.cronjob.apiVersion" . | quote }}
+kind: "Job"
+metadata:
+  name: {{ include "common.names.fullname" . | quote }}
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": "post-install,post-upgrade"
+    {{- if .Values.cleanup.deletePodsOnSuccess }}
+    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
+    {{- end }}
+spec:
+  template:
+    spec:
+      {{- if or .Values.global.imagePullSecrets .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- range .Values.global.imagePullSecrets }}
+        - name: "{{ . }}"
+        {{- end }}
+        {{- range .Values.imagePullSecrets }}
+        - name: "{{ . }}"
+        {{- end }}
+      {{- end }}
+      serviceAccountName: {{ include "common.names.fullname" . | quote }}
+      containers:
+        - name: "{{ .Chart.Name }}"
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: {{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global ) }}
+          imagePullPolicy: {{ .Values.image.imagePullPolicy | quote }}
+          {{- with .Values.resources }}
+          resources:
+            {{ toYaml . | nindent 12 | trim }}
+          {{- end }}
+          env:
+            - name: NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+          command:
+            - "/bin/bash"
+            - "-c"
+            - >
+              until kubectl exec --namespace="${NAMESPACE}" ox8-core-mw-default-0 -c core-mw
+              -- bash -c 'echo core-mw running...';
+              do
+                echo "waiting for container core-mw to be alive..."
+                sleep 1
+              done
+
+              kubectl exec --namespace="${NAMESPACE}" ox8-core-mw-default-0 -c core-mw
+              -- bash -c
+              "mkdir -p /opt/open-xchange/ox-filestore"
+
+              kubectl exec --namespace="${NAMESPACE}" ox8-core-mw-default-0 -c core-mw
+              -- bash -c
+              '/opt/open-xchange/sbin/initconfigdb
+              --configdb-user "${MYSQL_USER}"
+              --configdb-pass "${MYSQL_PASSWORD}"
+              --configdb-host "${MYSQL_HOST}"
+              --mysql-root-passwd "${MYSQL_PASSWORD}"
+              --configdb-dbname "${MYSQL_DATABASE}"'
+              || echo "error initconfigdb"
+
+              kubectl exec --namespace="${NAMESPACE}" ox8-core-mw-default-0 -c core-mw
+              -- bash -c
+              'until nc -z localhost 8009; do echo "waiting for port 8009"; sleep 5; done'
+
+              kubectl exec --namespace="${NAMESPACE}" ox8-core-mw-default-0 -c core-mw
+              -- bash -c
+              '/opt/open-xchange/sbin/registerfilestore
+              -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
+              -t /opt/open-xchange/ox-filestore
+              -s "100000"'
+              || echo "error: registerfilestore"
+
+              kubectl exec --namespace="${NAMESPACE}" ox8-core-mw-default-0 -c core-mw
+              -- bash -c
+              '/opt/open-xchange/sbin/registerserver
+              -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
+              -n oxserver'
+              || echo "error: registerserver"
+
+              kubectl exec --namespace="${NAMESPACE}" ox8-core-mw-default-0 -c core-mw
+              -- bash -c
+              '/opt/open-xchange/sbin/registerdatabase
+              -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
+              --name "PRIMARYDB"
+              --hostname "${MYSQL_HOST}"
+              --dbuser "${MYSQL_USER}"
+              --dbpasswd "${MYSQL_PASSWORD}"
+              --master true'
+              || echo "error: registerdatabase"
+      restartPolicy: Never
+  backoffLimit: 4
+...

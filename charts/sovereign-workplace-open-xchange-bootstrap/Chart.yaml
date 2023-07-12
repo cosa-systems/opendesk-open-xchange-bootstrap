@@ -1,0 +1,15 @@
+---
+apiVersion: "v2"
+description: "This helm chart contains a bootstrap job for the setup of Open-Xchange"
+name: "sovereign-workplace-open-xchange-bootstrap"
+type: "application"
+version: "1.0.0"
+keywords:
+  - "open-xchange"
+  - "bootstrap"
+  - "open-xchange-bootstrap"
+dependencies:
+  - name: "common"
+    repository: "https://charts.bitnami.com/bitnami"
+    version: "2.6.0"
+...

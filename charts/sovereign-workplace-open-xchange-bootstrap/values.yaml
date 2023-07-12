@@ -1,0 +1,77 @@
+---
+## Global parameters
+## Please, note that this will override the parameters, including dependencies, configured to use the global value
+##
+global:
+  ## Define docker registry address.
+  #
+  imageRegistry: "docker.io"
+
+  ## Credentials to fetch images from private registry
+  ## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  #
+  imagePullSecrets: []
+
+## String to partially override release name.
+#
+nameOverride: ""
+
+## Provide a name to substitute for the full names of resources.
+#
+fullnameOverride: ""
+
+## Credentials to fetch images from private registry
+## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+#
+imagePullSecrets: []
+
+## Define image for mariadb server.
+#
+image:
+  ## Define docker registry address.
+  #
+  # registry: "docker.io"
+
+  ## Define repository string.
+  #
+  repository: "alpine/k8s"
+
+  ## Define image tag.
+  #
+  tag: "1.25.6"
+
+  ## Define a imagePullPolicy.
+  ##
+  ## Ref.: https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy
+  ##
+  ## "IfNotPresent" => The image is pulled only if it is not already present locally.
+  ## "Always" => Every time the kubelet launches a container, the kubelet queries the container image registry to
+  ##             resolve the name to an image digest. If the kubelet has a container image with that exact digest cached
+  ##             locally, the kubelet uses its cached image; otherwise, the kubelet pulls the image with the resolved
+  ##             digest, and uses that image to launch the container.
+  ## "Never" => The kubelet does not try fetching the image. If the image is somehow already present locally, the
+  ##            kubelet attempts to start the container; otherwise, startup fails
+  #
+  imagePullPolicy: "IfNotPresent"
+
+# Configure resource requests and limits.
+#
+# http://kubernetes.io/docs/user-guide/compute-resources/
+#
+resources:
+  limits:
+    # -- The max amount of CPUs to consume.
+    cpu: 1
+    # -- The max amount of RAM to consume.
+    memory: "1Gi"
+  requests:
+    # -- The amount of CPUs which has to be available on the scheduled node.
+    cpu: "500m"
+    # -- The amount of RAM which has to be available on the scheduled node.
+    memory: "256Mi"
+
+# Helm release cleanup setting.
+cleanup:
+  # -- Keep Pods/Job logs after successful run.
+  deletePodsOnSuccess: false
+...
