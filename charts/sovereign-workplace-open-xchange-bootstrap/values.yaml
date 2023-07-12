@@ -77,6 +77,5 @@ cleanup:
 
 # Service Account settings.
 serviceAccount:
-  
   annotations: {}
 ...
