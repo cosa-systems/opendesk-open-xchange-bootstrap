@@ -1,3 +1,10 @@
+## [1.2.1](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.2.0...v1.2.1) (2023-07-19)
+
+
+### Bug Fixes
+
+* typo ([3470d8a](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/commit/3470d8a53a789b45b0fe738cf1943e28b0f2aa8d))
+
 # [1.2.0](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.1.0...v1.2.0) (2023-07-19)
 
 
