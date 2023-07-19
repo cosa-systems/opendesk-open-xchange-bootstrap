@@ -1,3 +1,10 @@
+## [1.2.2](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.2.1...v1.2.2) (2023-07-19)
+
+
+### Bug Fixes
+
+* more limited RBAC rules ([df2b313](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/commit/df2b313e792f2cc484a1d6951192aeaba46a0e56))
+
 ## [1.2.1](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.2.0...v1.2.1) (2023-07-19)
 
 
