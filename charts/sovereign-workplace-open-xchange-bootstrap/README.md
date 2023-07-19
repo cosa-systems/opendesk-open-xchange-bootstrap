@@ -22,8 +22,8 @@ helm install my-release sovereign-workplace-open-xchange-bootstrap/sovereign-wor
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | cleanup.deletePodsOnSuccess | bool | `false` | Keep Pods/Job logs after successful run. |
-| coreMiddleware.statefulSet | string | `"open-xchange-core-mw-default"` | Name of the StatefulSet, needs to be restarted after initialization |
-| coreMiddleware.pod | string | `"open-xchange-core-mw-default-0"` | Name of the pod where the database initialization should take place |
+| coreMiddleware.pod | string | `"open-xchange-core-mw-default-0"` |  |
+| coreMiddleware.statefulSet | string | `"open-xchange-core-mw-default"` |  |
 | fullnameOverride | string | `""` |  |
 | global.imagePullSecrets | list | `[]` |  |
 | global.imageRegistry | string | `"docker.io"` |  |

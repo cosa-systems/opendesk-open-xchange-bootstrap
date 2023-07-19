@@ -1,3 +1,10 @@
+# [1.2.0](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.1.0...v1.2.0) (2023-07-19)
+
+
+### Features
+
+* restart mw after initialization ([2c84660](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/commit/2c846604f17bf147f1c1dcc23129a01424544303))
+
 # [1.1.0](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.0.2...v1.1.0) (2023-07-12)
 
 
