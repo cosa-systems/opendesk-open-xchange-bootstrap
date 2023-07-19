@@ -39,7 +39,7 @@ spec:
             - name: CORE_MIDDLEWARE_STATEFULSET
               value: {{ .Values.coreMiddleware.statefulSet | quote }}  
             - name: CORE_MIDDLEWARE_POD
-              value: {{ .Values.coreMiddleware.podName | quote }}
+              value: {{ .Values.coreMiddleware.pod | quote }}
           command:
             - "/bin/bash"
             - "-c"
