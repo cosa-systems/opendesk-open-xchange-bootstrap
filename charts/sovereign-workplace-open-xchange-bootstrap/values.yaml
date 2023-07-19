@@ -79,5 +79,7 @@ cleanup:
 serviceAccount:
   annotations: {}
 
-coreMiddlewarePodName: "open-xchange-core-mw-default-0"
+coreMiddleware:
+  statefulSet: "open-xchange-core-mw-default"
+  pod: "open-xchange-core-mw-default-0"
 ...

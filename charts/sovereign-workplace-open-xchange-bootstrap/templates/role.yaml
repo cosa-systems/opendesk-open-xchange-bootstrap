@@ -9,6 +9,7 @@ rules:
   resources:
     - "pods"
     - "pods/exec"
+    - "statefulsets"
   # Todo: Restrict role to ox8-core-mw-default-0
   # resourceNames: ["ox8-core-mw-default-0"]
   verbs: ["get", "create"]

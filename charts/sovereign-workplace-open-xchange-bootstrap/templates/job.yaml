@@ -36,24 +36,26 @@ spec:
           env:
             - name: NAMESPACE
               value: {{ .Release.Namespace | quote }}
-            - name: CORE_MIDDLEWARE_PODNAME
-              value: {{ .Values.coreMiddlewarePodName | quote }}
+            - name: CORE_MIDDLEWARE_STATEFULSET
+              value: {{ .Values.coreMiddleware.statefulSet | quote }}  
+            - name: CORE_MIDDLEWARE_POD
+              value: {{ .Values.coreMiddleware.podName | quote }}
           command:
             - "/bin/bash"
             - "-c"
             - >
-              until kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_PODNAME} -c core-mw
+              until kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
               -- bash -c 'echo core-mw running...';
               do
                 echo "waiting for container core-mw to be alive..."
                 sleep 1
               done
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_PODNAME} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
               -- bash -c
               "mkdir -p /opt/open-xchange/ox-filestore"
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_PODNAME} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
               -- bash -c
               '/opt/open-xchange/sbin/initconfigdb
               --configdb-user "${MYSQL_USER}"
@@ -63,11 +65,11 @@ spec:
               --configdb-dbname "${MYSQL_DATABASE}"'
               || echo "error initconfigdb"
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_PODNAME} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
               -- bash -c
               'until nc -z localhost 8009; do echo "waiting for port 8009"; sleep 5; done'
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_PODNAME} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
               -- bash -c
               '/opt/open-xchange/sbin/registerfilestore
               -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
@@ -75,14 +77,14 @@ spec:
               -s "100000"'
               || echo "error: registerfilestore"
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_PODNAME} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
               -- bash -c
               '/opt/open-xchange/sbin/registerserver
               -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
               -n oxserver'
               || echo "error: registerserver"
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_PODNAME} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
               -- bash -c
               '/opt/open-xchange/sbin/registerdatabase
               -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
@@ -92,6 +94,8 @@ spec:
               --dbpasswd "${MYSQL_PASSWORD}"
               --master true'
               || echo "error: registerdatabase"
+
+              kubectl --namespace="${NAMESPACE}" rollout restart statefulset ${CORE_MIDDLEWARE_STATEFULSET}
       restartPolicy: Never
   backoffLimit: 4
 ...
