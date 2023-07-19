@@ -5,12 +5,21 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   name: {{ include "common.names.fullname" . | quote }}
 rules:
-- apiGroups: [""]
-  resources:
-    - "pods"
-    - "pods/exec"
-    - "statefulsets"
-  # Todo: Restrict role to ox8-core-mw-default-0
-  # resourceNames: ["ox8-core-mw-default-0"]
-  verbs: ["get", "create"]
+  # needed to execute commands inside pod
+  - apiGroups: [""]
+    resources:
+      - "pods"
+    resourceNames: [{{ .Values.coreMiddleware.pod | quote }}]
+    verbs: ["get"]
+  - apiGroups: [""]
+    resources:
+      - "pods/exec"
+    resourceNames: [{{ .Values.coreMiddleware.pod | quote }}]
+    verbs: ["create"]
+  # needed to restart stateful set
+  - apiGroups: ["apps"]
+    resources:
+      - "statefulsets"
+    resourceNames: [{{ .Values.coreMiddleware.statefulSet | quote }}]
+    verbs: ["get", "patch"]
 ...
