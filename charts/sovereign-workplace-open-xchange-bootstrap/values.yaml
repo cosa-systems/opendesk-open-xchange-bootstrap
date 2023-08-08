@@ -73,7 +73,9 @@ resources:
 # Helm release cleanup setting.
 cleanup:
   # -- Keep Pods/Job logs after successful run.
-  deletePodsOnSuccess: false
+  deletePodsOnSuccess: true
+  # -- When deletePodsOnSuccess is enabled, the pod will be deleted after configured seconds.
+  deletePodsOnSuccessTimeout: 3600
 
 # Service Account settings.
 serviceAccount:

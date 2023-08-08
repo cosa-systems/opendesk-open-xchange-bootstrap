@@ -6,11 +6,11 @@ metadata:
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
-    "helm.sh/hook": "post-install,post-upgrade"
-    {{- if .Values.cleanup.deletePodsOnSuccess }}
-    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
-    {{- end }}
+    "helm.sh/hook": "post-install"
 spec:
+  {{- if .Values.cleanup.deletePodsOnSuccess }}
+  ttlSecondsAfterFinished: "{{ .Values.cleanup.deletePodsOnSuccessTimeout }}"
+  {{- end }}
   template:
     spec:
       {{- if or .Values.global.imagePullSecrets .Values.imagePullSecrets }}
