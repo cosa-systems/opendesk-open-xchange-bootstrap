@@ -21,7 +21,8 @@ helm install my-release sovereign-workplace-open-xchange-bootstrap/sovereign-wor
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| cleanup.deletePodsOnSuccess | bool | `false` | Keep Pods/Job logs after successful run. |
+| cleanup.deletePodsOnSuccess | bool | `true` | Keep Pods/Job logs after successful run. |
+| cleanup.deletePodsOnSuccessTimeout | int | `3600` | When deletePodsOnSuccess is enabled, the pod will be deleted after configured seconds. |
 | coreMiddleware.pod | string | `"open-xchange-core-mw-default-0"` |  |
 | coreMiddleware.statefulSet | string | `"open-xchange-core-mw-default"` |  |
 | fullnameOverride | string | `""` |  |

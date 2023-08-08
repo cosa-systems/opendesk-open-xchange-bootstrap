@@ -1,3 +1,10 @@
+## [1.2.3](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.2.2...v1.2.3) (2023-08-08)
+
+
+### Bug Fixes
+
+* **sovereign-workplace-open-xchange-bootstrap:** remove jobs after completion ([db3b472](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/commit/db3b472547058ff03e6e01f8af0ccf6ec96d0c8f))
+
 ## [1.2.2](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.2.1...v1.2.2) (2023-07-19)
 
 
