@@ -1,3 +1,10 @@
+# [1.3.0](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.2.3...v1.3.0) (2023-08-10)
+
+
+### Features
+
+* **sovereign-workplace-open-xchange-bootstrap:** Add image digest support ([c9f57d5](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/commit/c9f57d58f281215940419a32fba04d60598c84e6))
+
 ## [1.2.3](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.2.2...v1.2.3) (2023-08-08)
 
 
