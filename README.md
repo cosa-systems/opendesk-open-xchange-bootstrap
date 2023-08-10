@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
+
+SPDX-License-Identifier: Apache-2.0
+-->
 # Sovereign Workplace Open-Xchange Bootstrap Helm Chart Repository
 
 This repository contains a Helm Chart for initializing Open-Xchange:
