@@ -13,7 +13,7 @@ metadata:
     "helm.sh/hook": "post-install"
 spec:
   {{- if .Values.cleanup.deletePodsOnSuccess }}
-  ttlSecondsAfterFinished: "{{ .Values.cleanup.deletePodsOnSuccessTimeout }}"
+  ttlSecondsAfterFinished: {{ .Values.cleanup.deletePodsOnSuccessTimeout | quote }}
   {{- end }}
   template:
     spec:
@@ -28,7 +28,7 @@ spec:
       {{- end }}
       serviceAccountName: {{ include "common.names.fullname" . | quote }}
       containers:
-        - name: "{{ .Chart.Name }}"
+        - name: {{ .Chart.Name | quote }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ coalesce .Values.image.registry .Values.global.registry }}/{{ .Values.image.repository }}{{ if .Values.image.digest }}@{{ .Values.image.digest }}{{ else }}:{{ .Values.image.tag }}{{ end }}"
