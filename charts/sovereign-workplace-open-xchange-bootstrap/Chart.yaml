@@ -1,5 +1,15 @@
+# SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
+#
+# SPDX-License-Identifier: Apache-2.0
 ---
+annotations:
+  category: "Communication"
+  licenses: "Apache-2.0"
 apiVersion: "v2"
+dependencies:
+  - name: "common"
+    version: "^2.x.x"
+    repository: "https://charts.bitnami.com/bitnami"
 description: "This helm chart contains a bootstrap job for the setup of Open-Xchange"
 name: "sovereign-workplace-open-xchange-bootstrap"
 type: "application"
@@ -8,8 +18,4 @@ keywords:
   - "open-xchange"
   - "bootstrap"
   - "open-xchange-bootstrap"
-dependencies:
-  - name: "common"
-    repository: "https://charts.bitnami.com/bitnami"
-    version: "2.6.0"
 ...

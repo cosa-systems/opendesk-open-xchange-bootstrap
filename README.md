@@ -1,6 +1,15 @@
 # Sovereign Workplace Open-Xchange Bootstrap Helm Chart Repository
 
-This repository contains a Helm Chart for initializing Open-Xchange.
+This repository contains a Helm Chart for initializing Open-Xchange:
+
+1. waits for the middleware to be available
+1. creates a directory for ox-filestore under `/opt/open-xchange/ox-filestore`
+1. `initconfigdb`
+1. waits for port 8009
+1. `registerfilestore`
+1. `registerserver`
+1. `registerdatabase`
+1. restarts the stateful set
 
 ## Prerequisites
 

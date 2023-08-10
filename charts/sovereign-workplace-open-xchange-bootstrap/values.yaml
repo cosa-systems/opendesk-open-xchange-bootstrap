@@ -1,58 +1,59 @@
+# SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
+#
+# SPDX-License-Identifier: Apache-2.0
 ---
-## Global parameters
-## Please, note that this will override the parameters, including dependencies, configured to use the global value
-##
+
+# The global properties are used to configure multiple charts at once.
 global:
-  ## Define docker registry address.
-  #
+  # -- Container registry address.
   imageRegistry: "docker.io"
 
-  ## Credentials to fetch images from private registry
-  ## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  # -- Credentials to fetch images from private registry
+  # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  #
+  # imagePullSecrets:
+  #   - "docker-registry"
   #
   imagePullSecrets: []
 
-## String to partially override release name.
-#
+# -- String to partially override release name.
 nameOverride: ""
 
-## Provide a name to substitute for the full names of resources.
-#
+# -- Provide a name to substitute for the full names of resources.
 fullnameOverride: ""
 
-## Credentials to fetch images from private registry
-## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+# -- Credentials to fetch images from private registry
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+#
+# imagePullSecrets:
+#   - "docker-registry"
 #
 imagePullSecrets: []
 
-## Define image for mariadb server.
+## Define image settings
 #
 image:
-  ## Define docker registry address.
-  #
-  # registry: "docker.io"
-
-  ## Define repository string.
-  #
+  # -- Container registry address. This setting has higher precedence than global.registry.
+  registry: "docker.io"
+  # -- Container repository string.
   repository: "alpine/k8s"
-
-  ## Define image tag.
+  # -- Define an ImagePullPolicy.
   #
-  tag: "1.25.6"
-
-  ## Define a imagePullPolicy.
-  ##
-  ## Ref.: https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy
-  ##
-  ## "IfNotPresent" => The image is pulled only if it is not already present locally.
-  ## "Always" => Every time the kubelet launches a container, the kubelet queries the container image registry to
-  ##             resolve the name to an image digest. If the kubelet has a container image with that exact digest cached
-  ##             locally, the kubelet uses its cached image; otherwise, the kubelet pulls the image with the resolved
-  ##             digest, and uses that image to launch the container.
-  ## "Never" => The kubelet does not try fetching the image. If the image is somehow already present locally, the
-  ##            kubelet attempts to start the container; otherwise, startup fails
+  # Ref.: https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy
+  #
+  # "IfNotPresent" => The image is pulled only if it is not already present locally.
+  # "Always" => Every time the kubelet launches a container, the kubelet queries the container image registry to
+  #             resolve the name to an image digest. If the kubelet has a container image with that exact digest cached
+  #             locally, the kubelet uses its cached image; otherwise, the kubelet pulls the image with the resolved
+  #             digest, and uses that image to launch the container.
+  # "Never" => The kubelet does not try fetching the image. If the image is somehow already present locally, the
+  #            kubelet attempts to start the container; otherwise, startup fails
   #
   imagePullPolicy: "IfNotPresent"
+  # -- Overrides the image tag whose default is the chart appVersion. Has no effect if digest is used!
+  tag: "1.27.4"
+  # -- use digest instead of image tag, has precedence over tag!
+  digest: ""
 
 # Configure resource requests and limits.
 #
@@ -77,11 +78,15 @@ cleanup:
   # -- When deletePodsOnSuccess is enabled, the pod will be deleted after configured seconds.
   deletePodsOnSuccessTimeout: 3600
 
-# Service Account settings.
+# Service account to use.
+# Ref.: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 serviceAccount:
+  # -- Additional custom annotations for the ServiceAccount.
   annotations: {}
 
 coreMiddleware:
+  # -- name of the statefulSet of the OX middleware
   statefulSet: "open-xchange-core-mw-default"
+  # -- name of the pod where the middleware is running
   pod: "open-xchange-core-mw-default-0"
 ...
