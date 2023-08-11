@@ -13,7 +13,7 @@ metadata:
     "helm.sh/hook": "post-install"
 spec:
   {{- if .Values.cleanup.deletePodsOnSuccess }}
-  ttlSecondsAfterFinished: {{ .Values.cleanup.deletePodsOnSuccessTimeout | quote }}
+  ttlSecondsAfterFinished: {{ .Values.cleanup.deletePodsOnSuccessTimeout }}
   {{- end }}
   template:
     spec:
