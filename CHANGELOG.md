@@ -1,3 +1,10 @@
+## [1.3.1](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.3.0...v1.3.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* **sovereign-workplace-open-xchange-bootstrap:** Remove quotes from numeric value ([50319a0](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/commit/50319a069f1ae1c01ba8a839a621ddd8eced4461))
+
 # [1.3.0](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.2.3...v1.3.0) (2023-08-10)
 
 
