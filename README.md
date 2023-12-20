@@ -28,7 +28,7 @@ Before you begin, ensure you have met the following requirements:
 
 The documentation is placed in the README of each helm chart:
 
-- [sovereign-workplace-open-xchange-bootstrap](charts/sovereign-workplace-open-xchange-bootstrap)
+- [opendesk-open-xchange-bootstrap](charts/opendesk-open-xchange-bootstrap)
 
 ## License
 
