@@ -1,3 +1,10 @@
+## [1.3.3](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v1.3.2...v1.3.3) (2023-12-20)
+
+
+### Bug Fixes
+
+* **ci:** Add .common:tags: [] ([a542e9b](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/a542e9bf1bc5c166bae5976b8eecda3c4801cfc5))
+
 ## [1.3.2](https://gitlab.opencode.de/bmi/opendesk/components/charts/opendesk-open-xchange-bootstrap/compare/v1.3.1...v1.3.2) (2023-12-20)
 
 
