@@ -1,3 +1,10 @@
+## [1.3.2](https://gitlab.opencode.de/bmi/opendesk/components/charts/opendesk-open-xchange-bootstrap/compare/v1.3.1...v1.3.2) (2023-12-20)
+
+
+### Bug Fixes
+
+* **ci:** Move repo to Open CoDE ([16df41a](https://gitlab.opencode.de/bmi/opendesk/components/charts/opendesk-open-xchange-bootstrap/commit/16df41aa2da38a62609ca5a9b8eb3fa65383edc6))
+
 ## [1.3.1](https://gitlab.souvap-univention.de/souvap/tooling/charts/sovereign-workplace-open-xchange-bootstrap/compare/v1.3.0...v1.3.1) (2023-08-11)
 
 
