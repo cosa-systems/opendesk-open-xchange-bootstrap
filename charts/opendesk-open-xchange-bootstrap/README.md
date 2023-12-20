@@ -77,7 +77,9 @@ cosign verify --key cosign.pub --insecure-ignore-tlog <image>
 ```
 
 ## License
+
 This project uses the following license: Apache-2.0
 
 ## Copyright
+
 Copyright (C) 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
