@@ -17,6 +17,7 @@ stages:
   - "publish"
   - ".post"
 
+
 .common:
   tags: []
 ...
