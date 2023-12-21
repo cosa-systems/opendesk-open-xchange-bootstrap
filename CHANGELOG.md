@@ -1,3 +1,10 @@
+## [1.3.5](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v1.3.4...v1.3.5) (2023-12-21)
+
+
+### Bug Fixes
+
+* Add GPG key, update README.md ([e06747e](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/e06747e49cb56fa5d25890f114104eaa95214eae))
+
 ## [1.3.4](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v1.3.3...v1.3.4) (2023-12-21)
 
 
