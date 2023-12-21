@@ -3,7 +3,7 @@ SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG Ze
 
 SPDX-License-Identifier: Apache-2.0
 -->
-# sovereign-workplace-open-xchange-bootstrap
+# opendesk-open-xchange-bootstrap
 
 This helm chart contains a bootstrap job for the setup of Open-Xchange
 
@@ -13,7 +13,7 @@ To install the chart with the release name `my-release`:
 
 ```console
 helm repo add opendesk-open-xchange-bootstrap https://gitlab.opencode.de/api/v4/projects/1379/packages/helm/stable
-helm install my-release opendesk-open-xchange-bootstrap/sovereign-workplace-open-xchange-bootstrap
+helm install my-release opendesk-open-xchange-bootstrap/opendesk-open-xchange-bootstrap
 ```
 
 ## Requirements
@@ -77,9 +77,7 @@ cosign verify --key cosign.pub --insecure-ignore-tlog <image>
 ```
 
 ## License
-
 This project uses the following license: Apache-2.0
 
 ## Copyright
-
 Copyright (C) 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"

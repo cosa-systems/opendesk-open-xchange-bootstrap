@@ -1,3 +1,10 @@
+## [1.3.4](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v1.3.3...v1.3.4) (2023-12-21)
+
+
+### Bug Fixes
+
+* **chartname:** Rename to opendesk-open-xchange-bootstrap ([5d8b7bb](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/5d8b7bb32fc71cf7ee7754af7d3a9b00f174b0b0))
+
 ## [1.3.3](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v1.3.2...v1.3.3) (2023-12-20)
 
 
