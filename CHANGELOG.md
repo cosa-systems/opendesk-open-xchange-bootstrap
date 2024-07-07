@@ -1,3 +1,15 @@
+# [2.0.0](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v1.3.5...v2.0.0) (2024-07-07)
+
+
+### Bug Fixes
+
+* **opendesk-open-xchange-bootstrap:** Use normal job without hook ([0569673](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/056967398e661ae057b7c573195865bc2f1b12f5))
+
+
+### BREAKING CHANGES
+
+* **opendesk-open-xchange-bootstrap:** Remove helm hook annotation
+
 ## [1.3.5](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v1.3.4...v1.3.5) (2023-12-21)
 
 
