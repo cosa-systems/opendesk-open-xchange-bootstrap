@@ -26,8 +26,18 @@ helm install my-release opendesk-open-xchange-bootstrap/opendesk-open-xchange-bo
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| additionalAnnotations | object | `{}` | Additional custom annotations to add to all deployed objects. |
+| additionalLabels | object | `{}` | Additional custom labels to add to all deployed objects. |
 | cleanup.deletePodsOnSuccess | bool | `true` | Keep Pods/Job logs after successful run. |
 | cleanup.deletePodsOnSuccessTimeout | int | `3600` | When deletePodsOnSuccess is enabled, the pod will be deleted after configured seconds. |
+| containerSecurityContext.allowPrivilegeEscalation | bool | `false` | Enable container privileged escalation. |
+| containerSecurityContext.capabilities | object | `{"drop":["ALL"]}` | Security capabilities for container. |
+| containerSecurityContext.enabled | bool | `true` | Enable security context. |
+| containerSecurityContext.readOnlyRootFilesystem | bool | `true` | Mounts the container's root filesystem as read-only. |
+| containerSecurityContext.runAsGroup | int | `1000` | Process group id. |
+| containerSecurityContext.runAsNonRoot | bool | `true` | Run container as a user. |
+| containerSecurityContext.runAsUser | int | `1000` | Process user id. |
+| containerSecurityContext.seccompProfile.type | string | `"RuntimeDefault"` | Disallow custom Seccomp profile by setting it to RuntimeDefault. |
 | coreMiddleware.pod | string | `"open-xchange-core-mw-default-0"` | name of the pod where the middleware is running |
 | coreMiddleware.statefulSet | string | `"open-xchange-core-mw-default"` | name of the statefulSet of the OX middleware |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources. |

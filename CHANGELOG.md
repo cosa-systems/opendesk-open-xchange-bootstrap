@@ -1,3 +1,10 @@
+# [2.1.0](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v2.0.0...v2.1.0) (2024-09-22)
+
+
+### Features
+
+* **opendesk-open-xchange-bootstrap:** Add additionalAnnotations, additionalLabels and containerSecurityContext ([b684abc](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/b684abc57aff728c5ed1b78940b155906bb05f85))
+
 # [2.0.0](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v1.3.5...v2.0.0) (2024-07-07)
 
 
