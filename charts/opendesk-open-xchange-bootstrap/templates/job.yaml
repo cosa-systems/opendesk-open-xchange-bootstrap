@@ -13,9 +13,9 @@ metadata:
     {{- if .Values.additionalLabels }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.additionalLabels "context" . ) | nindent 4 }}
     {{- end }}
-    {{- if .Values.additionalAnnotations }}
-    annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.additionalAnnotations "context" . ) | nindent 4 }}
-    {{- end }}
+  {{- if .Values.additionalAnnotations }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.additionalAnnotations "context" . ) | nindent 4 }}
+  {{- end }}
 spec:
   {{- if .Values.cleanup.deletePodsOnSuccess }}
   ttlSecondsAfterFinished: {{ .Values.cleanup.deletePodsOnSuccessTimeout }}
