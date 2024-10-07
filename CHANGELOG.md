@@ -1,3 +1,10 @@
+## [2.1.2](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v2.1.1...v2.1.2) (2024-10-07)
+
+
+### Bug Fixes
+
+* **opendesk-open-xchange-bootstrap:** Remove enabled from containerSecurityContext ([ce53cfd](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/ce53cfd234ff55c54fe0a44d8f16189ba1913654))
+
 ## [2.1.1](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v2.1.0...v2.1.1) (2024-10-07)
 
 
