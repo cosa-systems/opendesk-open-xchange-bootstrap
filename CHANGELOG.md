@@ -1,3 +1,10 @@
+## [2.1.1](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v2.1.0...v2.1.1) (2024-10-07)
+
+
+### Bug Fixes
+
+* **opendesk-open-xchange-bootstrap:** Fix additionalAnnotations identation ([619db12](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/619db12283c0982d4bc72fcc565234d8085bb88d))
+
 # [2.1.0](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v2.0.0...v2.1.0) (2024-09-22)
 
 
