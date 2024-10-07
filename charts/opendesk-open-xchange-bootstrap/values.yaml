@@ -33,9 +33,6 @@ containerSecurityContext:
     drop:
       - "ALL"
 
-  # -- Enable security context.
-  enabled: true
-
   # -- Process user id.
   runAsUser: 1000
 
