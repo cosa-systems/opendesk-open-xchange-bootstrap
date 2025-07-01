@@ -13,7 +13,7 @@ dependencies:
 description: "This helm chart contains a bootstrap job for the setup of Open-Xchange"
 name: "opendesk-open-xchange-bootstrap"
 type: "application"
-version: "2.1.2"
+version: "3.0.0"
 keywords:
   - "open-xchange"
   - "bootstrap"

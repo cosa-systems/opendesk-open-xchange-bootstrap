@@ -39,6 +39,8 @@ helm install my-release opendesk-open-xchange-bootstrap/opendesk-open-xchange-bo
 | containerSecurityContext.seccompProfile.type | string | `"RuntimeDefault"` | Disallow custom Seccomp profile by setting it to RuntimeDefault. |
 | coreMiddleware.pod | string | `"open-xchange-core-mw-default-0"` | name of the pod where the middleware is running |
 | coreMiddleware.statefulSet | string | `"open-xchange-core-mw-default"` | name of the statefulSet of the OX middleware |
+| filestore.identifier | string | `"ox-filestore-s3"` | identfier of filestore in filestore-s3.properties |
+| filestore.size | string | `"100000"` | Size in MB |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources. |
 | global.imagePullSecrets | list | `[]` | Credentials to fetch images from private registry Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/  imagePullSecrets:   - "docker-registry"  |
 | global.imageRegistry | string | `"docker.io"` | Container registry address. |

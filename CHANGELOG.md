@@ -1,3 +1,15 @@
+# [3.0.0](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v2.1.2...v3.0.0) (2025-07-01)
+
+
+### Features
+
+* **opendesk-open-xchange-bootstrap:** Add objectstorage support ([ebe951b](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/ebe951b016246655e06d5e63d713268022b6f4c1))
+
+
+### BREAKING CHANGES
+
+* **opendesk-open-xchange-bootstrap:** s3 storage will be used by default
+
 ## [2.1.2](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v2.1.1...v2.1.2) (2024-10-07)
 
 
