@@ -1,3 +1,4 @@
+# SPDX-FileCopyrightText: 2024-2025 Zentrum für Digitale Souveränität der Öffentlichen Verwaltung (ZenDiS) GmbH
 # SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
 #
 # SPDX-License-Identifier: Apache-2.0
@@ -124,4 +125,10 @@ coreMiddleware:
   statefulSet: "open-xchange-core-mw-default"
   # -- name of the pod where the middleware is running
   pod: "open-xchange-core-mw-default-0"
+
+filestore:
+  # -- identfier of filestore in filestore-s3.properties
+  identifier: "ox-filestore-s3"
+  # -- Size in MB
+  size: "100000"
 ...
