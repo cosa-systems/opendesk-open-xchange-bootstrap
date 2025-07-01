@@ -1,5 +1,5 @@
 {{/*
-SPDX-FileCopyrightText: 2024 Zentrum für Digitale Souveränität der Öffentlichen Verwaltung (ZenDiS) GmbH
+SPDX-FileCopyrightText: 2024-2025 Zentrum für Digitale Souveränität der Öffentlichen Verwaltung (ZenDiS) GmbH
 SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
 SPDX-License-Identifier: Apache-2.0
 */}}
@@ -71,10 +71,6 @@ spec:
 
               kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
               -- bash -c
-              "mkdir -p /opt/open-xchange/ox-filestore"
-
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
-              -- bash -c
               '/opt/open-xchange/sbin/initconfigdb
               --configdb-user "${MYSQL_USER}"
               --configdb-pass "${MYSQL_PASSWORD}"
@@ -91,9 +87,8 @@ spec:
               -- bash -c
               '/opt/open-xchange/sbin/registerfilestore
               -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
-              -t /opt/open-xchange/ox-filestore
-              -s "100000"'
-              || echo "error: registerfilestore"
+              -t s3://{{ .Values.filestore.identifier }} -s {{ .Values.filestore.size | quote }}'
+              || echo "error: registerfilestore (objectstore)"
 
               kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
               -- bash -c

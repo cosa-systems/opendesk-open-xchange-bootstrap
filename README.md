@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024 Zentrum für Digitale Souveränität der Öffentlichen Verwaltung (ZenDiS) GmbH
+SPDX-FileCopyrightText: 2024-2025 Zentrum für Digitale Souveränität der Öffentlichen Verwaltung (ZenDiS) GmbH
 SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
 
 SPDX-License-Identifier: Apache-2.0
@@ -9,7 +9,6 @@ SPDX-License-Identifier: Apache-2.0
 This repository contains a Helm Chart for initializing Open-Xchange:
 
 1. waits for the middleware to be available
-1. creates a directory for ox-filestore under `/opt/open-xchange/ox-filestore`
 1. `initconfigdb`
 1. waits for port 8009
 1. `registerfilestore`
