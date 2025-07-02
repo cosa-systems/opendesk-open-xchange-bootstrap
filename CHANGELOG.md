@@ -1,3 +1,10 @@
+## [3.0.1](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v3.0.0...v3.0.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* **opendesk-open-xchange-bootstrap:** Use numeric value for size ([3093209](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/30932098097c724b9a00090da4fe0ae7221fef34))
+
 # [3.0.0](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v2.1.2...v3.0.0) (2025-07-01)
 
 
