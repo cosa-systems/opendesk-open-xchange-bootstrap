@@ -87,7 +87,7 @@ spec:
               -- bash -c
               '/opt/open-xchange/sbin/registerfilestore
               -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
-              -t s3://{{ .Values.filestore.identifier }} -s {{ .Values.filestore.size | quote }}'
+              -t s3://{{ .Values.filestore.identifier }} -s {{ .Values.filestore.size }}'
               || echo "error: registerfilestore (objectstore)"
 
               kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw

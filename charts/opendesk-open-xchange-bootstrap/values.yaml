@@ -130,5 +130,5 @@ filestore:
   # -- identfier of filestore in filestore-s3.properties
   identifier: "ox-filestore-s3"
   # -- Size in MB
-  size: "100000"
+  size: 100000
 ...
