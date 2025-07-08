@@ -13,17 +13,15 @@ rules:
   - apiGroups: [""]
     resources:
       - "pods"
-    resourceNames: [{{ .Values.coreMiddleware.pod | quote }}]
-    verbs: ["get"]
+    verbs: ["get", "list"]
   - apiGroups: [""]
     resources:
       - "pods/exec"
-    resourceNames: [{{ .Values.coreMiddleware.pod | quote }}]
     verbs: ["create"]
   # needed to restart stateful set
   - apiGroups: ["apps"]
     resources:
+      - "deployments"
       - "statefulsets"
-    resourceNames: [{{ .Values.coreMiddleware.statefulSet | quote }}]
-    verbs: ["get", "patch"]
+    verbs: ["get", "list", "patch"]
 ...

@@ -121,10 +121,8 @@ serviceAccount:
   annotations: {}
 
 coreMiddleware:
-  # -- name of the statefulSet of the OX middleware
-  statefulSet: "open-xchange-core-mw-default"
-  # -- name of the pod where the middleware is running
-  pod: "open-xchange-core-mw-default-0"
+  # -- Selector for deployment
+  selector: "app.kubernetes.io/instance=open-xchange,app.kubernetes.io/name=core-mw"
 
 filestore:
   # -- identfier of filestore in filestore-s3.properties

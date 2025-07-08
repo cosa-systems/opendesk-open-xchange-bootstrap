@@ -54,22 +54,34 @@ spec:
           env:
             - name: "NAMESPACE"
               value: {{ .Release.Namespace | quote }}
-            - name: "CORE_MIDDLEWARE_STATEFULSET"
-              value: {{ .Values.coreMiddleware.statefulSet | quote }}
-            - name: "CORE_MIDDLEWARE_POD"
-              value: {{ .Values.coreMiddleware.pod | quote }}
+            - name: "SELECTOR"
+              value: {{ .Values.coreMiddleware.selector }}
           command:
             - "/bin/bash"
             - "-c"
             - >
-              until kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
+              pod=""
+              type="deployment"
+
+              until pod=`kubectl get pod -n "${NAMESPACE}" -l "${SELECTOR}" -o jsonpath="{.items[0].metadata.name}"`;
+              do
+                echo "finding correct pod..."
+                sleep 1
+              done
+
+              [ $(kubectl get pod -n "${NAMESPACE}" -l "${SELECTOR}" -o jsonpath="{.items[0].metadata.ownerReferences[0].kind}") == "StatefulSet" ]
+              && type="statefulset"
+
+              echo "Found ${type} ${pod}"
+
+              until kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw
               -- bash -c 'echo core-mw running...';
               do
                 echo "waiting for container core-mw to be alive..."
                 sleep 1
               done
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw
               -- bash -c
               '/opt/open-xchange/sbin/initconfigdb
               --configdb-user "${MYSQL_USER}"
@@ -79,25 +91,25 @@ spec:
               --configdb-dbname "${MYSQL_DATABASE}"'
               || echo "error initconfigdb"
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw
               -- bash -c
               'until nc -z localhost 8009; do echo "waiting for port 8009"; sleep 5; done'
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw
               -- bash -c
               '/opt/open-xchange/sbin/registerfilestore
               -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
               -t s3://{{ .Values.filestore.identifier }} -s {{ .Values.filestore.size }}'
               || echo "error: registerfilestore (objectstore)"
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw
               -- bash -c
               '/opt/open-xchange/sbin/registerserver
               -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
               -n oxserver'
               || echo "error: registerserver"
 
-              kubectl exec --namespace="${NAMESPACE}" ${CORE_MIDDLEWARE_POD} -c core-mw
+              kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw
               -- bash -c
               '/opt/open-xchange/sbin/registerdatabase
               -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}"
@@ -108,7 +120,7 @@ spec:
               --master true'
               || echo "error: registerdatabase"
 
-              kubectl --namespace="${NAMESPACE}" rollout restart statefulset ${CORE_MIDDLEWARE_STATEFULSET}
+              kubectl --namespace=${NAMESPACE} rollout restart "${type}" --selector="${SELECTOR}"
       restartPolicy: "Never"
   backoffLimit: 4
 ...

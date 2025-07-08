@@ -8,12 +8,12 @@ kind: "RoleBinding"
 metadata:
   name: {{ include "common.names.fullname" . | quote }}
   namespace: {{ .Release.Namespace | quote }}
-roleRef: # points to the ClusterRole
+roleRef:
   apiGroup: "rbac.authorization.k8s.io"
   kind: "Role"
   name: {{ include "common.names.fullname" . | quote }}
-subjects: # points to the ServiceAccount
+subjects:
 - kind: "ServiceAccount"
   name: {{ include "common.names.fullname" . | quote }}
-  namespace: {{ .Release.Namespace | quote }} # ns of service account
+  namespace: {{ .Release.Namespace | quote }}
 ...
