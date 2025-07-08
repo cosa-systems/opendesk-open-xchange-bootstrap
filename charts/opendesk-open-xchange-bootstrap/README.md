@@ -37,8 +37,7 @@ helm install my-release opendesk-open-xchange-bootstrap/opendesk-open-xchange-bo
 | containerSecurityContext.runAsNonRoot | bool | `true` | Run container as a user. |
 | containerSecurityContext.runAsUser | int | `1000` | Process user id. |
 | containerSecurityContext.seccompProfile.type | string | `"RuntimeDefault"` | Disallow custom Seccomp profile by setting it to RuntimeDefault. |
-| coreMiddleware.pod | string | `"open-xchange-core-mw-default-0"` | name of the pod where the middleware is running |
-| coreMiddleware.statefulSet | string | `"open-xchange-core-mw-default"` | name of the statefulSet of the OX middleware |
+| coreMiddleware.selector | string | `"app.kubernetes.io/instance=open-xchange,app.kubernetes.io/name=core-mw"` | Selector for deployment |
 | filestore.identifier | string | `"ox-filestore-s3"` | identfier of filestore in filestore-s3.properties |
 | filestore.size | int | `100000` | Size in MB |
 | fullnameOverride | string | `""` | Provide a name to substitute for the full names of resources. |

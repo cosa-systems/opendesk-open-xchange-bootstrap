@@ -1,3 +1,15 @@
+# [4.0.0](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v3.0.1...v4.0.0) (2025-07-08)
+
+
+### Bug Fixes
+
+* **opendesk-open-xchange-bootstrap:** Add support for deployments ([49635e3](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/49635e3227fdad0e2ce62474fbfad7b45cfdd096))
+
+
+### BREAKING CHANGES
+
+* **opendesk-open-xchange-bootstrap:** Pod is now identified via selector instead of name
+
 ## [3.0.1](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v3.0.0...v3.0.1) (2025-07-02)
 
 
