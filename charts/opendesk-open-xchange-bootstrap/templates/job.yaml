@@ -56,6 +56,8 @@ spec:
               value: {{ .Release.Namespace | quote }}
             - name: "SELECTOR"
               value: {{ .Values.coreMiddleware.selector }}
+            - name: "ADMIN_SELECTOR"
+              value: {{ .Values.coreMiddleware.adminSelector }}
           command:
             - "/bin/bash"
             - "-c"
@@ -63,13 +65,13 @@ spec:
               pod=""
               type="deployment"
 
-              until pod=`kubectl get pod -n "${NAMESPACE}" -l "${SELECTOR}" -o jsonpath="{.items[0].metadata.name}"`;
+              until pod=`kubectl get pod -n "${NAMESPACE}" -l "${ADMIN_SELECTOR}" -o jsonpath="{.items[0].metadata.name}"`;
               do
                 echo "finding correct pod..."
                 sleep 1
               done
 
-              [ $(kubectl get pod -n "${NAMESPACE}" -l "${SELECTOR}" -o jsonpath="{.items[0].metadata.ownerReferences[0].kind}") == "StatefulSet" ]
+              [ $(kubectl get pod -n "${NAMESPACE}" -l "${ADMIN_SELECTOR}" -o jsonpath="{.items[0].metadata.ownerReferences[0].kind}") == "StatefulSet" ]
               && type="statefulset"
 
               echo "Found ${type} ${pod}"
