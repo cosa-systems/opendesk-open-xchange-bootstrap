@@ -1,3 +1,10 @@
+## [4.0.1](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v4.0.0...v4.0.1) (2025-07-16)
+
+
+### Bug Fixes
+
+* **opendesk-open-xchange-bootstrap:** Use specific selectors for deployments ([89f8f56](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/89f8f56795a71acc9bef890b5934c311b66fc23f))
+
 # [4.0.0](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v3.0.1...v4.0.0) (2025-07-08)
 
 
