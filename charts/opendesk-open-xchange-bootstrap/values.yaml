@@ -121,8 +121,10 @@ serviceAccount:
   annotations: {}
 
 coreMiddleware:
-  # -- Selector for deployment
+  # -- Selector for all OX core middleware deployments
   selector: "app.kubernetes.io/instance=open-xchange,app.kubernetes.io/name=core-mw"
+  # -- Selector for provisioning (role admin)
+  adminSelector: "roles.middleware.open-xchange.com/admin=true"
 
 filestore:
   # -- identfier of filestore in filestore-s3.properties
