@@ -17,11 +17,23 @@ global:
   #
   imagePullSecrets: []
 
+# -- Affinity for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+# Note: podAffinityPreset, podAntiAffinityPreset, and  nodeAffinityPreset will be ignored when it's set
+affinity: {}
+
 # -- Additional custom annotations to add to all deployed objects.
 additionalAnnotations: {}
 
 # -- Additional custom labels to add to all deployed objects.
 additionalLabels: {}
+
+# Helm release cleanup setting.
+cleanup:
+  # -- Keep Pods/Job logs after successful run.
+  deletePodsOnSuccess: false
+  # -- When deletePodsOnSuccess is enabled, the pod will be deleted after configured seconds.
+  deletePodsOnSuccessTimeout: 3600
 
 # Security Context.
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
@@ -91,6 +103,30 @@ image:
   # -- use digest instead of image tag, has precedence over tag!
   digest: ""
 
+# -- Node labels for pod assignment
+# Ref: https://kubernetes.io/docs/user-guide/node-selection/
+nodeSelector: {}
+
+# -- Pod Annotations.
+# Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
+
+# -- Pod Labels.
+# Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+podLabels: {}
+
+# Pod Security Context.
+# Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+podSecurityContext:
+  # -- Enable security context.
+  enabled: true
+
+  # -- If specified, all processes of the container are also part of the supplementary group.
+  fsGroup: 1000
+
+  # -- Change ownership and permission of the volume before being exposed inside a Pod.
+  fsGroupChangePolicy: "Always"
+
 # Configure resource requests and limits.
 #
 # http://kubernetes.io/docs/user-guide/compute-resources/
@@ -107,18 +143,38 @@ resources:
     # -- The amount of RAM which has to be available on the scheduled node.
     memory: "256Mi"
 
-# Helm release cleanup setting.
-cleanup:
-  # -- Keep Pods/Job logs after successful run.
-  deletePodsOnSuccess: true
-  # -- When deletePodsOnSuccess is enabled, the pod will be deleted after configured seconds.
-  deletePodsOnSuccessTimeout: 3600
-
 # Service account to use.
 # Ref.: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 serviceAccount:
   # -- Additional custom annotations for the ServiceAccount.
   annotations: {}
+
+  # -- Allows auto mount of ServiceAccountToken on the serviceAccount created. Can be set to false if pods using this
+  # serviceAccount do not need to use K8s API.
+  automountServiceAccountToken: true
+
+  # -- Enable creation of ServiceAccount for pod.
+  create: true
+
+  # -- Additional custom labels for the ServiceAccount.
+  labels: {}
+
+# -- In seconds, time the given to the pod needs to terminate gracefully.
+# Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods
+terminationGracePeriodSeconds: ""
+
+# -- Tolerations for pod assignment
+# Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+
+# -- Topology spread constraints rely on node labels to identify the topology domain(s) that each Node is in
+# Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+#
+# topologySpreadConstraints:
+#   - maxSkew: 1
+#     topologyKey: failure-domain.beta.kubernetes.io/zone
+#     whenUnsatisfiable: DoNotSchedule
+topologySpreadConstraints: []
 
 coreMiddleware:
   # -- Selector for all OX core middleware deployments

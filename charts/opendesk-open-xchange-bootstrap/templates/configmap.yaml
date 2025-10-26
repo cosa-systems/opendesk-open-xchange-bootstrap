@@ -1,0 +1,79 @@
+{{/*
+SPDX-FileCopyrightText: 2025 Zentrum für Digitale Souveränität der Öffentlichen Verwaltung (ZenDiS) GmbH
+SPDX-License-Identifier: Apache-2.0
+*/}}
+---
+kind: "ConfigMap"
+apiVersion: "v1"
+metadata:
+  name: {{ include "common.names.fullname" . | quote }}
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+  {{- if .Values.commonAnnotations }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+  {{- end }}
+data:
+  bootstrap.sh: |
+    #!/bin/bash
+
+    pod=""
+    type="deployment"
+
+    until pod=`kubectl get pod -n "${NAMESPACE}" -l "${ADMIN_SELECTOR}" -o jsonpath="{.items[0].metadata.name}"`;
+    do
+      echo "finding correct pod..."
+      sleep 1
+    done
+
+    [ $(kubectl get pod -n "${NAMESPACE}" -l "${ADMIN_SELECTOR}" -o jsonpath="{.items[0].metadata.ownerReferences[0].kind}") == "StatefulSet" ] && type="statefulset"
+
+    echo "Found ${type} ${pod}"
+
+    until kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw -- bash -c 'echo core-mw running...';
+    do
+      echo "waiting for container core-mw to be alive..."
+      sleep 1
+    done
+
+    kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw \
+    -- bash -c \
+    '/opt/open-xchange/sbin/initconfigdb \
+    --mysql-args "--skip-ssl-verify-server-cert" \
+    --configdb-user "${MYSQL_USER}" \
+    --configdb-pass "${MYSQL_PASSWORD}" \
+    --configdb-host "${MYSQL_HOST}" \
+    --mysql-root-passwd "${MYSQL_PASSWORD}" \
+    --configdb-dbname "${MYSQL_DATABASE}"' \
+    || echo "error initconfigdb"
+
+    kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw -- bash -c \
+    'until nc -z localhost 8009; do echo "waiting for port 8009"; sleep 5; done'
+
+    kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw -- bash -c \
+    '/opt/open-xchange/sbin/registerfilestore \
+    -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}" \
+    -t s3://{{ .Values.filestore.identifier }} -s {{ .Values.filestore.size }}' \
+    || echo "error: registerfilestore (objectstore)"
+
+    kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw -- bash -c \
+    '/opt/open-xchange/sbin/registerserver \
+    -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}" \
+    -n oxserver' \
+    || echo "error: registerserver"
+
+    kubectl exec --namespace="${NAMESPACE}" "${pod}" -c core-mw -- bash -c \
+    '/opt/open-xchange/sbin/registerdatabase \
+    -A "${MASTER_ADMIN_USER}" -P "${MASTER_ADMIN_PW}" \
+    --name "PRIMARYDB" \
+    --hostname "${MYSQL_HOST}" \
+    --dbuser "${MYSQL_USER}" \
+    --dbpasswd "${MYSQL_PASSWORD}" \
+    --master true' \
+    || echo "error: registerdatabase"
+
+    kubectl --namespace=${NAMESPACE} rollout restart "${type}" --selector="${SELECTOR}"
+
+...
