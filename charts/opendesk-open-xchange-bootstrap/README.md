@@ -28,7 +28,8 @@ helm install my-release opendesk-open-xchange-bootstrap/opendesk-open-xchange-bo
 |-----|------|---------|-------------|
 | additionalAnnotations | object | `{}` | Additional custom annotations to add to all deployed objects. |
 | additionalLabels | object | `{}` | Additional custom labels to add to all deployed objects. |
-| cleanup.deletePodsOnSuccess | bool | `true` | Keep Pods/Job logs after successful run. |
+| affinity | object | `{}` | Affinity for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity Note: podAffinityPreset, podAntiAffinityPreset, and  nodeAffinityPreset will be ignored when it's set |
+| cleanup.deletePodsOnSuccess | bool | `false` | Keep Pods/Job logs after successful run. |
 | cleanup.deletePodsOnSuccessTimeout | int | `3600` | When deletePodsOnSuccess is enabled, the pod will be deleted after configured seconds. |
 | containerSecurityContext.allowPrivilegeEscalation | bool | `false` | Enable container privileged escalation. |
 | containerSecurityContext.capabilities | object | `{"drop":["ALL"]}` | Security capabilities for container. |
@@ -51,11 +52,23 @@ helm install my-release opendesk-open-xchange-bootstrap/opendesk-open-xchange-bo
 | image.tag | string | `"1.27.4"` | Overrides the image tag whose default is the chart appVersion. Has no effect if digest is used! |
 | imagePullSecrets | list | `[]` | Credentials to fetch images from private registry Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/  imagePullSecrets:   - "docker-registry"  |
 | nameOverride | string | `""` | String to partially override release name. |
+| nodeSelector | object | `{}` | Node labels for pod assignment Ref: https://kubernetes.io/docs/user-guide/node-selection/ |
+| podAnnotations | object | `{}` | Pod Annotations. Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ |
+| podLabels | object | `{}` | Pod Labels. Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ |
+| podSecurityContext.enabled | bool | `true` | Enable security context. |
+| podSecurityContext.fsGroup | int | `1000` | If specified, all processes of the container are also part of the supplementary group. |
+| podSecurityContext.fsGroupChangePolicy | string | `"Always"` | Change ownership and permission of the volume before being exposed inside a Pod. |
 | resources.limits.cpu | int | `1` | The max amount of CPUs to consume. |
 | resources.limits.memory | string | `"1Gi"` | The max amount of RAM to consume. |
 | resources.requests.cpu | string | `"500m"` | The amount of CPUs which has to be available on the scheduled node. |
 | resources.requests.memory | string | `"256Mi"` | The amount of RAM which has to be available on the scheduled node. |
 | serviceAccount.annotations | object | `{}` | Additional custom annotations for the ServiceAccount. |
+| serviceAccount.automountServiceAccountToken | bool | `true` | Allows auto mount of ServiceAccountToken on the serviceAccount created. Can be set to false if pods using this serviceAccount do not need to use K8s API. |
+| serviceAccount.create | bool | `true` | Enable creation of ServiceAccount for pod. |
+| serviceAccount.labels | object | `{}` | Additional custom labels for the ServiceAccount. |
+| terminationGracePeriodSeconds | string | `""` | In seconds, time the given to the pod needs to terminate gracefully. Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods |
+| tolerations | list | `[]` | Tolerations for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ |
+| topologySpreadConstraints | list | `[]` | Topology spread constraints rely on node labels to identify the topology domain(s) that each Node is in Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/  topologySpreadConstraints:   - maxSkew: 1     topologyKey: failure-domain.beta.kubernetes.io/zone     whenUnsatisfiable: DoNotSchedule |
 
 ## Uninstalling the Chart
 

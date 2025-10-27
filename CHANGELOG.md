@@ -1,3 +1,10 @@
+## [4.0.2](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v4.0.1...v4.0.2) (2025-10-27)
+
+
+### Bug Fixes
+
+* **opendesk-open-xchange-bootstrap:** Don't require a valid TLS certificate for database initialization ([8bd3fe1](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/8bd3fe1231a83886eca5fe8b168c1e6a31dada47))
+
 ## [4.0.1](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v4.0.0...v4.0.1) (2025-07-16)
 
 
