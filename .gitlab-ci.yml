@@ -1,9 +1,10 @@
+# SPDX-FileCopyrightText: 2024-2026 Zentrum für Digitale Souveränität der Öffentlichen Verwaltung (ZenDiS) GmbH
 # SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
 # SPDX-License-Identifier: Apache-2.0
 ---
 include:
   project: "bmi/opendesk/tooling/gitlab-config"
-  ref: "v2.3.3"
+  ref: "v2.4.16"
   file:
     - "ci/common/lint.yml"
     - "ci/helm/helm-lint.yml"
@@ -16,7 +17,6 @@ stages:
   - "package"
   - "publish"
   - ".post"
-
 
 .common:
   tags: []
