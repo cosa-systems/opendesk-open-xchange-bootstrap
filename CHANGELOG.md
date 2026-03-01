@@ -1,3 +1,10 @@
+## [4.0.3](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v4.0.2...v4.0.3) (2026-03-01)
+
+
+### Bug Fixes
+
+* **opendesk-open-xchange-bootstrap:** Use the correct database user for initconfigdb ([c6bb497](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/c6bb497305a5533c62df2fdd7beabda11739fb21))
+
 ## [4.0.2](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v4.0.1...v4.0.2) (2025-10-27)
 
 
