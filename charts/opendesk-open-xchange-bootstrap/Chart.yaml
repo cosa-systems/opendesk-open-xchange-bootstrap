@@ -9,11 +9,11 @@ apiVersion: "v2"
 dependencies:
   - name: "common"
     version: "^2.x.x"
-    repository: "https://charts.bitnami.com/bitnami"
+    repository: "oci://registry.opencode.de/bmi/opendesk/components/external/charts/bitnami-charts"
 description: "This helm chart contains a bootstrap job for the setup of Open-Xchange"
 name: "opendesk-open-xchange-bootstrap"
 type: "application"
-version: "4.1.0"
+version: "4.1.0-cosa.1"
 keywords:
   - "open-xchange"
   - "bootstrap"
