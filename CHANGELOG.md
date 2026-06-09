@@ -1,3 +1,10 @@
+# [4.1.0](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v4.0.3...v4.1.0) (2026-06-09)
+
+
+### Features
+
+* **configmap:** Use the db port for configuration ([baa884e](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/commit/baa884eccdcd285618acc5349b65f595e0fb1e1d))
+
 ## [4.0.3](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-open-xchange-bootstrap/compare/v4.0.2...v4.0.3) (2026-03-01)
 
 
