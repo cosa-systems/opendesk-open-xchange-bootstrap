@@ -3,11 +3,20 @@ SPDX-FileCopyrightText: 2024-2025 Zentrum für Digitale Souveränität der Öffe
 SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
 SPDX-License-Identifier: Apache-2.0
 */}}
+{{- $cmRendered := include (print .Template.BasePath "/configmap.yaml") . -}}
+{{- $hashInput := dict
+      "configmap"     $cmRendered
+      "image"         .Values.image
+      "namespace"     .Release.Namespace
+      "selector"      .Values.coreMiddleware.selector
+      "adminSelector" .Values.coreMiddleware.adminSelector
+-}}
+{{- $hash := $hashInput | toYaml | sha256sum | trunc 10 -}}
 ---
 apiVersion: {{ include "common.capabilities.cronjob.apiVersion" . | quote }}
 kind: "Job"
 metadata:
-  name: {{ include "common.names.fullname" . | quote }}
+  name: {{ printf "%s-%s" (include "common.names.fullname" . | trunc 52 | trimSuffix "-") $hash | quote }}
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
     {{- if .Values.additionalLabels }}
@@ -22,11 +31,10 @@ spec:
   {{- end }}
   template:
     metadata:
+      {{- if .Values.podAnnotations }}
       annotations:
-        checksum/configmap: {{ include (print .Template.BasePath "/configmap.yaml") . | sha256sum }}
-        {{- if .Values.podAnnotations }}
         {{- include "common.tplvalues.render" (dict "value" .Values.podAnnotations "context" .) | nindent 8 }}
-        {{- end }}
+      {{- end }}
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
         {{- if .Values.additionalLabels }}
